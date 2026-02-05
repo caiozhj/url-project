@@ -21,26 +21,11 @@ docker-compose up -d
 
 Sobe automaticamente:
 - PostgreSQL na porta 5432
-- Adminer na porta 8080 (interface web para o banco)
+- Adminer na porta 8080 
 - API na porta 3000
 
-A API estará disponível em `http://localhost:3000`
+A API  em `http://localhost:3000`
 
-### Comandos úteis
-
-```bash
-# Ver os logs da API
-docker-compose logs -f app
-
-# Parar todos os serviços
-docker-compose down
-
-# Parar e remover volumes (limpar dados)
-docker-compose down -v
-
-# Reconstruir a imagem da API
-docker-compose build --no-cache app
-```
 
 ## Documentação da API
 
@@ -53,7 +38,7 @@ http://localhost:3000/api-docs
 
 ### Autenticação
 - `POST /api/auth/register` - Cadastrar usuário
-- `POST /api/auth/login` - Fazer login (retorna Bearer Token)
+- `POST /api/auth/login` - Fazer login (retorna Token)
 
 ### URLs
 - `POST /api/urls/shorten` - Encurtar URL (público ou autenticado)
@@ -104,14 +89,7 @@ Credenciais:
 - Senha: postgres
 - Banco de dados: url-project
 
-## Estrutura do projeto
 
-```
-src/
-├── auth/          # Autenticação e autorização
-├── urls/          # Lógica de encurtamento de URLs
-├── entities/      # Entidades do banco de dados
-└── main.ts        # Ponto de entrada da aplicação
 ```
 
 ## Tecnologias
