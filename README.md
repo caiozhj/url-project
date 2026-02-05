@@ -8,7 +8,7 @@ API REST para encurtamento de URLs construída com NestJS e TypeScript.
 
 ## Como rodar
 
-É muito simples! Basta ter o Docker Compose instalado:
+Ter o Docker Compose instalado:
 
 ```bash
 # Clone o repositório
@@ -19,7 +19,7 @@ cd project-name
 docker-compose up -d
 ```
 
-Isso vai subir automaticamente:
+Sobe automaticamente:
 - PostgreSQL na porta 5432
 - Adminer na porta 8080 (interface web para o banco)
 - API na porta 3000
