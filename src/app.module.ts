@@ -3,7 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './entities/user.entity';
+import { ShortUrl } from './entities/short-url.entity';
+import { Sequence } from './entities/sequence.entity';
 import { AuthModule } from './auth/auth.module';
+import { UrlModule } from './urls/url.module';
 
 @Module({
   imports: [
@@ -14,11 +17,12 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASSWORD || 'postgres',
       database: process.env.DB_NAME || 'url-project',
-      entities: [User],
+      entities: [User, ShortUrl, Sequence],
       synchronize: process.env.NODE_ENV !== 'production',
       logging: process.env.NODE_ENV === 'development',
     }),
     AuthModule,
+    UrlModule,
   ],
   controllers: [AppController],
   providers: [AppService],

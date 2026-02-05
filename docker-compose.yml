@@ -29,32 +29,33 @@ services:
       ADMINER_DEFAULT_SERVER: postgres
       ADMINER_DEFAULT_DB: url-project
 
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: url-shortener-app
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - NODE_ENV=development
-  #     - DB_HOST=postgres
-  #     - DB_PORT=5432
-  #     - DB_USER=postgres
-  #     - DB_PASSWORD=postgres
-  #     - DB_NAME=url_shortener
-  #     - PORT=3000
-  #     - JWT_SECRET=your-secret-key-change-in-production
-  #     - JWT_EXPIRES_IN=24h
-  #     - SHORT_URL_DOMAIN=http://localhost:3000
-  #     - SHORT_CODE_LENGTH=6
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #   command: npm run start:dev
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: url-shortener-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=url-project
+      - PORT=3000
+      - JWT_SECRET=your-secret-key-change-in-production
+      - JWT_EXPIRES_IN=24h
+      - SHORT_URL_DOMAIN=http://localhost:3000
+      - SHORT_CODE_LENGTH=6
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - node_modules_data:/app/node_modules
+    command: sh -c "npm ci 2>/dev/null || true && npm rebuild bcrypt && npm run start:dev"
 
 volumes:
   postgres_data:
+  node_modules_data:

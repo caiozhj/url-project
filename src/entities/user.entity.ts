@@ -7,7 +7,7 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from 'typeorm';
-
+import { ShortUrl } from './short-url.entity';
 
 @Entity('users')
 export class User {
@@ -29,5 +29,6 @@ export class User {
   @DeleteDateColumn({ name: 'deleted_at', nullable: true })
   deletedAt: Date;
 
-
+  @OneToMany(() => ShortUrl, (shortUrl) => shortUrl.user)
+  shortenedUrls: ShortUrl[];
 }
